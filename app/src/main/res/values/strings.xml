@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AI Study Assistant</string>
+
+    <!-- Auth -->
+    <string name="login_title">Welcome Back</string>
+    <string name="login_subtitle">Sign in to continue studying</string>
+    <string name="register_title">Create Account</string>
+    <string name="register_subtitle">Start your AI-powered study journey</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">Sign In</string>
+    <string name="btn_register">Create Account</string>
+    <string name="link_to_register">Don\'t have an account? <b>Sign Up</b></string>
+    <string name="link_to_login">Already have an account? <b>Sign In</b></string>
+
+    <!-- Bottom Nav -->
+    <string name="nav_home">Home</string>
+    <string name="nav_generate">Generate</string>
+    <string name="nav_history">History</string>
+
+    <!-- Home -->
+    <string name="home_greeting">Hello, %1$s 👋</string>
+    <string name="home_subtitle">What do you want to study today?</string>
+    <string name="home_recent">Recent Sessions</string>
+    <string name="home_see_all">See all</string>
+    <string name="home_card_summary_title">Summary</string>
+    <string name="home_card_summary_desc">Condense long texts into clear summaries</string>
+    <string name="home_card_quiz_title">Quiz</string>
+    <string name="home_card_quiz_desc">Test your knowledge with AI-generated questions</string>
+    <string name="home_card_flashcards_title">Flashcards</string>
+    <string name="home_card_flashcards_desc">Learn faster with interactive Q&amp;A cards</string>
+
+    <!-- Generate -->
+    <string name="generate_title">Generate</string>
+    <string name="generate_tab_text">Type Text</string>
+    <string name="generate_tab_image">Scan Image</string>
+    <string name="hint_text_input">Paste or type your study material here…</string>
+    <string name="hint_subject">Subject (optional, e.g. Biology)</string>
+    <string name="label_type">What do you want to generate?</string>
+    <string name="chip_summary">Summary</string>
+    <string name="chip_quiz">Quiz</string>
+    <string name="chip_flashcards">Flashcards</string>
+    <string name="btn_generate">Generate</string>
+    <string name="btn_camera">Take Photo</string>
+    <string name="btn_gallery">Choose Image</string>
+    <string name="ocr_scanning">Scanning text from image…</string>
+    <string name="generating">Generating content…</string>
+
+    <!-- Result -->
+    <string name="result_title">Result</string>
+    <string name="result_share">Share</string>
+    <string name="result_save">Saved</string>
+
+    <!-- Quiz -->
+    <string name="quiz_question_counter">Question %1$d of %2$d</string>
+    <string name="quiz_score_title">Quiz Complete! 🎉</string>
+    <string name="quiz_score_message">You scored %1$d out of %2$d</string>
+    <string name="quiz_btn_finish">Finish Quiz</string>
+    <string name="quiz_btn_next">Next</string>
+
+    <!-- Flashcards -->
+    <string name="flashcard_counter">%1$d / %2$d</string>
+    <string name="flashcard_tap_hint">Tap to flip</string>
+    <string name="flashcard_front">Question</string>
+    <string name="flashcard_back">Answer</string>
+
+    <!-- History -->
+    <string name="history_empty">No sessions yet.\nGenerate something to get started!</string>
+    <string name="history_delete_confirm">Delete this session?</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- Errors -->
+    <string name="error_network">Network error. Check your connection.</string>
+    <string name="error_server">Server error. Please try again.</string>
+    <string name="error_invalid_credentials">Invalid email or password.</string>
+    <string name="error_email_taken">This email is already registered.</string>
+    <string name="error_text_too_short">Please enter at least 20 characters of text.</string>
+    <string name="error_text_too_long">Text is too long (max 20,000 characters).</string>
+    <string name="error_ocr_failed">Could not extract text from this image.</string>
+    <string name="error_select_type">Please select a generation type.</string>
+</resources>

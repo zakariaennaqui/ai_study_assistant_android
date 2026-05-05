@@ -1,0 +1,4 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Night theme inherits from the same dark base — already dark by design -->
+    <style name="Theme.AiStudyAssistant" parent="Base.Theme.AiStudyAssistant" />
+</resources>
