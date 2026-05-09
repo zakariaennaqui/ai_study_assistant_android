@@ -88,7 +88,8 @@ public class RegisterActivity extends AppCompatActivity {
             tilPassword.setError("At least 6 characters required");
             valid = false;
         }
-        if (!valid) return;
+        if (!valid)
+            return;
 
         setLoading(true);
 

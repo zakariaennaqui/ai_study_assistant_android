@@ -61,14 +61,24 @@
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
 
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        android:id="@+id/btn_logout"-->
+<!--                        style="@style/Widget.Material3.Button.IconButton"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:contentDescription="Logout"-->
+<!--                        app:icon="@android:drawable/ic_menu_close_clear_cancel"-->
+<!--                        app:iconTint="@color/color_on_surface_muted" />-->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_logout"
-                        style="@style/Widget.Material3.Button.IconButton"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:contentDescription="Logout"
-                        app:icon="@android:drawable/ic_menu_close_clear_cancel"
-                        app:iconTint="@color/color_on_surface_muted" />
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Logout"
+                        android:textColor="@color/color_error"
+                        app:strokeColor="@color/color_error"
+                        app:icon="@drawable/ic_logout"
+                        app:iconTint="@color/color_error" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
