@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void switchTo(Fragment fragment) {
-        if (fragment == activeFragment) return;
+        if (fragment == activeFragment)
+            return;
         getSupportFragmentManager().beginTransaction()
                 .hide(activeFragment)
                 .show(fragment)

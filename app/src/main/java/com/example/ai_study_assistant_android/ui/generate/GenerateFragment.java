@@ -65,32 +65,33 @@ public class GenerateFragment extends Fragment {
     private String pendingType = null;
 
     // Camera launcher
-    private final ActivityResultLauncher<Uri> cameraLauncher =
-            registerForActivityResult(new ActivityResultContracts.TakePicture(), success -> {
+    private final ActivityResultLauncher<Uri> cameraLauncher = registerForActivityResult(
+            new ActivityResultContracts.TakePicture(), success -> {
                 if (success && cameraImageUri != null) {
                     showImageAndRunOcr(cameraImageUri);
                 }
             });
 
     // Gallery launcher
-    private final ActivityResultLauncher<String> galleryLauncher =
-            registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
+    private final ActivityResultLauncher<String> galleryLauncher = registerForActivityResult(
+            new ActivityResultContracts.GetContent(), uri -> {
                 if (uri != null) {
                     showImageAndRunOcr(uri);
                 }
             });
 
     // Camera permission launcher
-    private final ActivityResultLauncher<String> cameraPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
-                if (granted) launchCamera();
+    private final ActivityResultLauncher<String> cameraPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(), granted -> {
+                if (granted)
+                    launchCamera();
             });
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_generate, container, false);
     }
 
@@ -130,7 +131,8 @@ public class GenerateFragment extends Fragment {
 
         // Tab switcher: text vs image
         tabInput.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override public void onTabSelected(TabLayout.Tab tab) {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0) {
                     tilText.setVisibility(View.VISIBLE);
                     panelImage.setVisibility(View.GONE);
@@ -139,15 +141,28 @@ public class GenerateFragment extends Fragment {
                     panelImage.setVisibility(View.VISIBLE);
                 }
             }
-            @Override public void onTabUnselected(TabLayout.Tab tab) {}
-            @Override public void onTabReselected(TabLayout.Tab tab) {}
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
         });
 
         // Char counter
         etText.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
-            @Override public void onTextChanged(CharSequence s, int st, int b, int c) {}
-            @Override public void afterTextChanged(Editable s) {
+            @Override
+            public void beforeTextChanged(CharSequence s, int st, int c, int a) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int st, int b, int c) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
                 tvCharCount.setText(s.length() + " / 20000");
             }
         });
@@ -167,18 +182,27 @@ public class GenerateFragment extends Fragment {
     }
 
     private void applyType(String type) {
-        if (type == null) return;
+        if (type == null)
+            return;
         switch (type) {
-            case "QUIZ": chipQuiz.setChecked(true); break;
-            case "FLASHCARDS": chipFlashcards.setChecked(true); break;
-            default: chipSummary.setChecked(true); break;
+            case "QUIZ":
+                chipQuiz.setChecked(true);
+                break;
+            case "FLASHCARDS":
+                chipFlashcards.setChecked(true);
+                break;
+            default:
+                chipSummary.setChecked(true);
+                break;
         }
     }
 
     private String getSelectedType() {
         int id = chipGroupType.getCheckedChipId();
-        if (id == R.id.chip_quiz) return "QUIZ";
-        if (id == R.id.chip_flashcards) return "FLASHCARDS";
+        if (id == R.id.chip_quiz)
+            return "QUIZ";
+        if (id == R.id.chip_flashcards)
+            return "FLASHCARDS";
         return "SUMMARY";
     }
 
@@ -197,7 +221,8 @@ public class GenerateFragment extends Fragment {
 
         String type = getSelectedType();
         String subject = etSubject.getText() != null ? etSubject.getText().toString().trim() : null;
-        if (subject != null && subject.isEmpty()) subject = null;
+        if (subject != null && subject.isEmpty())
+            subject = null;
 
         setLoading(true);
 
@@ -206,7 +231,8 @@ public class GenerateFragment extends Fragment {
                 .enqueue(new Callback<StudySession>() {
                     @Override
                     public void onResponse(Call<StudySession> call, Response<StudySession> response) {
-                        if (!isAdded()) return;
+                        if (!isAdded())
+                            return;
                         setLoading(false);
                         if (response.isSuccessful() && response.body() != null) {
                             Intent intent = new Intent(requireContext(), ResultActivity.class);
@@ -227,7 +253,8 @@ public class GenerateFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<StudySession> call, Throwable t) {
-                        if (!isAdded()) return;
+                        if (!isAdded())
+                            return;
                         setLoading(false);
                         showError(getString(R.string.error_network));
                     }
@@ -237,8 +264,8 @@ public class GenerateFragment extends Fragment {
     // ── OCR ──────────────────────────────────────────────────────────────────
 
     private void requestCameraAndLaunch() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-                == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(requireContext(),
+                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             launchCamera();
         } else {
             cameraPermissionLauncher.launch(Manifest.permission.CAMERA);
@@ -274,7 +301,8 @@ public class GenerateFragment extends Fragment {
             TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
             recognizer.process(image)
                     .addOnSuccessListener(result -> {
-                        if (!isAdded()) return;
+                        if (!isAdded())
+                            return;
                         String recognized = result.getText();
                         if (recognized.isEmpty()) {
                             showError(getString(R.string.error_ocr_failed));
@@ -284,7 +312,8 @@ public class GenerateFragment extends Fragment {
                         tvOcrStatus.setVisibility(View.GONE);
                     })
                     .addOnFailureListener(e -> {
-                        if (!isAdded()) return;
+                        if (!isAdded())
+                            return;
                         showError(getString(R.string.error_ocr_failed));
                         tvOcrStatus.setVisibility(View.GONE);
                     });
