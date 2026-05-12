@@ -20,6 +20,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String EXTRA_PREFILL_SOURCE_TEXT = "extra_prefill_source_text";
+    public static final String EXTRA_PREFILL_SUBJECT = "extra_prefill_subject";
+    public static final String EXTRA_PREFILL_TARGET_TYPE = "extra_prefill_target_type";
+
     private static final String TAG_HOME = "home";
     private static final String TAG_GENERATE = "generate";
     private static final String TAG_HISTORY = "history";
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, homeFragment, TAG_HOME)
                     .commit();
             activeFragment = homeFragment;
+            fm.executePendingTransactions();
         } else {
             homeFragment = (HomeFragment) fm.findFragmentByTag(TAG_HOME);
             generateFragment = (GenerateFragment) fm.findFragmentByTag(TAG_GENERATE);
@@ -90,6 +95,46 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        maybeConsumeGeneratePrefillIntent(getIntent());
+    }
+
+    private void maybeConsumeGeneratePrefillIntent(Intent intent) {
+        if (intent == null || generateFragment == null) {
+            return;
+        }
+        if (!intent.hasExtra(EXTRA_PREFILL_SOURCE_TEXT)) {
+            return;
+        }
+        String text = intent.getStringExtra(EXTRA_PREFILL_SOURCE_TEXT);
+        String subject = intent.hasExtra(EXTRA_PREFILL_SUBJECT)
+                ? intent.getStringExtra(EXTRA_PREFILL_SUBJECT) : null;
+        String targetType = intent.hasExtra(EXTRA_PREFILL_TARGET_TYPE)
+                ? intent.getStringExtra(EXTRA_PREFILL_TARGET_TYPE) : null;
+
+        bottomNav.setSelectedItemId(R.id.nav_generate);
+        switchTo(generateFragment);
+        getSupportFragmentManager().executePendingTransactions();
+        Runnable apply = () -> generateFragment.applyPrefillFromResult(text, subject, targetType);
+        if (generateFragment.getView() != null) {
+            generateFragment.getView().post(apply);
+        } else {
+            bottomNav.post(apply);
+        }
+
+        intent.removeExtra(EXTRA_PREFILL_SOURCE_TEXT);
+        intent.removeExtra(EXTRA_PREFILL_SUBJECT);
+        intent.removeExtra(EXTRA_PREFILL_TARGET_TYPE);
     }
 
     @Override

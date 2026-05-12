@@ -28,6 +28,10 @@ public class StudySession implements Serializable {
     @SerializedName("createdAt")
     private String createdAt;
 
+    /** Original material text; used for follow-up generation from results. */
+    @SerializedName("sourceText")
+    private String sourceText;
+
     public String getSessionId() { return sessionId; }
     public String getType() { return type; }
     public String getSubject() { return subject; }
@@ -35,4 +39,5 @@ public class StudySession implements Serializable {
     public List<QuizQuestion> getQuestions() { return questions; }
     public List<Flashcard> getFlashcards() { return flashcards; }
     public String getCreatedAt() { return createdAt; }
+    public String getSourceText() { return sourceText; }
 }

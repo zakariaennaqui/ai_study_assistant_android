@@ -59,6 +59,16 @@
     <string name="hint_text_input">Paste or type your study material here</string>
     <string name="hint_subject">Subject (optional, e.g. Biology)</string>
     <string name="label_type">What do you want to generate?</string>
+    <string name="label_summary_depth">Summary style</string>
+    <string name="summary_depth_essentials">Quick take</string>
+    <string name="summary_depth_balanced">Standard</string>
+    <string name="summary_depth_thorough">In depth</string>
+    <string name="label_quiz_question_count">Number of questions</string>
+    <string name="quiz_count_value_format">%1$d questions</string>
+    <string name="result_followup_title">Create more from this material</string>
+    <string name="result_followup_summary">Summary</string>
+    <string name="result_followup_quiz">Quiz</string>
+    <string name="result_followup_flashcards">Flashcards</string>
     <string name="chip_summary">Summary</string>
     <string name="chip_quiz">Quiz</string>
     <string name="chip_flashcards">Flashcards</string>

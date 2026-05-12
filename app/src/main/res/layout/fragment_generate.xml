@@ -78,6 +78,102 @@
                 app:checkedIconVisible="false" />
         </com.google.android.material.chip.ChipGroup>
 
+        <!-- Summary: how much detail -->
+        <LinearLayout
+            android:id="@+id/panel_summary_depth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_summary_depth"
+                android:textColor="@color/color_on_surface_muted"
+                android:textSize="13sp"
+                android:paddingBottom="8dp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_summary_depth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_depth_essentials"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/summary_depth_essentials"
+                    android:textColor="@color/color_on_background"
+                    app:chipBackgroundColor="@color/chip_bg_selector"
+                    app:chipCornerRadius="10dp"
+                    app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_depth_balanced"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/summary_depth_balanced"
+                    android:textColor="@color/color_on_background"
+                    app:chipBackgroundColor="@color/chip_bg_selector"
+                    app:chipCornerRadius="10dp"
+                    app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_depth_thorough"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/summary_depth_thorough"
+                    android:textColor="@color/color_on_background"
+                    app:chipBackgroundColor="@color/chip_bg_selector"
+                    app:chipCornerRadius="10dp"
+                    app:checkedIconVisible="false" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+
+        <!-- Quiz: number of questions -->
+        <LinearLayout
+            android:id="@+id/panel_quiz_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_quiz_question_count"
+                android:textColor="@color/color_on_surface_muted"
+                android:textSize="13sp"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tv_quiz_count_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_on_background"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp" />
+
+            <SeekBar
+                android:id="@+id/seek_quiz_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="9"
+                android:progress="2"
+                android:minHeight="36dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
+        </LinearLayout>
+
         <!-- Subject -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_subject"

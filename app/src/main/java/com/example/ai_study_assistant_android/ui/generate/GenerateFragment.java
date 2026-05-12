@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -28,9 +29,9 @@ import com.example.ai_study_assistant_android.model.GenerateRequest;
 import com.example.ai_study_assistant_android.model.StudySession;
 import com.example.ai_study_assistant_android.network.ApiClient;
 import com.example.ai_study_assistant_android.ui.result.ResultActivity;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
@@ -51,6 +52,10 @@ public class GenerateFragment extends Fragment {
 
     private ChipGroup chipGroupType;
     private Chip chipSummary, chipQuiz, chipFlashcards;
+    private ChipGroup chipGroupSummaryDepth;
+    private View panelSummaryDepth, panelQuizCount;
+    private SeekBar seekQuizCount;
+    private TextView tvQuizCountValue;
     private TextInputLayout tilSubject, tilText;
     private TextInputEditText etSubject, etText;
     private TabLayout tabInput;
@@ -103,6 +108,11 @@ public class GenerateFragment extends Fragment {
         chipSummary = view.findViewById(R.id.chip_summary);
         chipQuiz = view.findViewById(R.id.chip_quiz);
         chipFlashcards = view.findViewById(R.id.chip_flashcards);
+        chipGroupSummaryDepth = view.findViewById(R.id.chip_group_summary_depth);
+        panelSummaryDepth = view.findViewById(R.id.panel_summary_depth);
+        panelQuizCount = view.findViewById(R.id.panel_quiz_count);
+        seekQuizCount = view.findViewById(R.id.seek_quiz_count);
+        tvQuizCountValue = view.findViewById(R.id.tv_quiz_count_value);
         tilSubject = view.findViewById(R.id.til_subject);
         tilText = view.findViewById(R.id.til_text);
         etSubject = view.findViewById(R.id.et_subject);
@@ -122,6 +132,25 @@ public class GenerateFragment extends Fragment {
 
         // Default selection
         chipSummary.setChecked(true);
+        chipGroupSummaryDepth.check(R.id.chip_depth_balanced);
+        refreshQuizCountLabel();
+
+        seekQuizCount.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                refreshQuizCountLabel();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+        chipGroupType.setOnCheckedChangeListener((group, checkedId) -> updateTypeOptionPanels());
 
         // Apply any pre-selected type from HomeFragment
         if (pendingType != null) {
@@ -170,6 +199,65 @@ public class GenerateFragment extends Fragment {
         btnCamera.setOnClickListener(v -> requestCameraAndLaunch());
         btnGallery.setOnClickListener(v -> galleryLauncher.launch("image/*"));
         btnGenerate.setOnClickListener(v -> attemptGenerate());
+
+        updateTypeOptionPanels();
+    }
+
+    /** Called from MainActivity when returning from a result with follow-up actions */
+    public void applyPrefillFromResult(String sourceText, String subject, String targetType) {
+        if (etText == null) {
+            return;
+        }
+        if (sourceText != null) {
+            etText.setText(sourceText);
+        }
+        if (subject != null) {
+            etSubject.setText(subject);
+        }
+        if (targetType != null) {
+            applyType(targetType);
+        }
+        tabInput.selectTab(tabInput.getTabAt(0));
+        tilText.setVisibility(View.VISIBLE);
+        panelImage.setVisibility(View.GONE);
+        tvError.setVisibility(View.GONE);
+        updateTypeOptionPanels();
+    }
+
+    private void refreshQuizCountLabel() {
+        if (tvQuizCountValue == null || seekQuizCount == null) {
+            return;
+        }
+        int n = seekQuizCount.getProgress() + 3;
+        tvQuizCountValue.setText(getString(R.string.quiz_count_value_format, n));
+    }
+
+    private void updateTypeOptionPanels() {
+        if (panelSummaryDepth == null || panelQuizCount == null) {
+            return;
+        }
+        String type = getSelectedType();
+        if ("SUMMARY".equals(type)) {
+            panelSummaryDepth.setVisibility(View.VISIBLE);
+            panelQuizCount.setVisibility(View.GONE);
+        } else if ("QUIZ".equals(type)) {
+            panelSummaryDepth.setVisibility(View.GONE);
+            panelQuizCount.setVisibility(View.VISIBLE);
+        } else {
+            panelSummaryDepth.setVisibility(View.GONE);
+            panelQuizCount.setVisibility(View.GONE);
+        }
+    }
+
+    private String getSelectedSummaryDepth() {
+        int id = chipGroupSummaryDepth.getCheckedChipId();
+        if (id == R.id.chip_depth_essentials) {
+            return "ESSENTIALS";
+        }
+        if (id == R.id.chip_depth_thorough) {
+            return "THOROUGH";
+        }
+        return "BALANCED";
     }
 
     /** Called from MainActivity when a Home card is tapped */
@@ -178,6 +266,7 @@ public class GenerateFragment extends Fragment {
             pendingType = type; // view not ready yet
         } else {
             applyType(type);
+            updateTypeOptionPanels();
         }
     }
 
@@ -224,10 +313,13 @@ public class GenerateFragment extends Fragment {
         if (subject != null && subject.isEmpty())
             subject = null;
 
+        Integer quizCount = "QUIZ".equals(type) ? seekQuizCount.getProgress() + 3 : null;
+        String summaryDepth = "SUMMARY".equals(type) ? getSelectedSummaryDepth() : null;
+
         setLoading(true);
 
         ApiClient.getInstance(requireContext()).getApiService()
-                .generate(new GenerateRequest(text, type, subject))
+                .generate(new GenerateRequest(text, type, subject, quizCount, summaryDepth))
                 .enqueue(new Callback<StudySession>() {
                     @Override
                     public void onResponse(Call<StudySession> call, Response<StudySession> response) {
