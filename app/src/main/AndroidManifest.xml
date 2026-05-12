@@ -44,6 +44,11 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.profile.EditProfileActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".ui.result.ResultActivity"
             android:exported="false"
             android:parentActivityName=".ui.main.MainActivity" />

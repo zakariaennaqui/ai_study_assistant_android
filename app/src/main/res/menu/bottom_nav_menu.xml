@@ -3,17 +3,22 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@android:drawable/ic_menu_today"
+        android:icon="@drawable/ic_nav_home"
         android:title="@string/nav_home" />
 
     <item
         android:id="@+id/nav_generate"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/ic_nav_generate"
         android:title="@string/nav_generate" />
 
     <item
         android:id="@+id/nav_history"
-        android:icon="@android:drawable/ic_menu_recent_history"
+        android:icon="@drawable/ic_nav_history"
         android:title="@string/nav_history" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_nav_profile"
+        android:title="@string/nav_profile" />
 
 </menu>

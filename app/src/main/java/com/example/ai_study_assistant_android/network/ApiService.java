@@ -7,6 +7,7 @@ import com.example.ai_study_assistant_android.model.HistoryItem;
 import com.example.ai_study_assistant_android.model.MeResponse;
 import com.example.ai_study_assistant_android.model.RegisterRequest;
 import com.example.ai_study_assistant_android.model.StudySession;
+import com.example.ai_study_assistant_android.model.UpdateProfileRequest;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -29,6 +31,9 @@ public interface ApiService {
 
     @GET("api/auth/me")
     Call<MeResponse> me();
+
+    @PATCH("api/auth/profile")
+    Call<AuthResponse> updateProfile(@Body UpdateProfileRequest body);
 
     // ── Study Generation ──────────────────────────────────────────────────────
 

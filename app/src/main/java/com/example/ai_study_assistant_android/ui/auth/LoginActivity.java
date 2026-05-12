@@ -24,6 +24,8 @@ import retrofit2.Response;
 
 import android.widget.TextView;
 
+import com.example.ai_study_assistant_android.ui.profile.ProfileFragment;
+
 public class LoginActivity extends AppCompatActivity {
 
     private TextInputLayout tilEmail, tilPassword;
@@ -36,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ProfileFragment.applySavedTheme(this);
         super.onCreate(savedInstanceState);
 
         tokenManager = TokenManager.getInstance(this);

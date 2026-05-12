@@ -31,7 +31,6 @@ public class FlashcardsFragment extends Fragment {
     private View cardFront, cardBack, flCard;
     private MaterialButton btnPrev, btnNext;
 
-    private AnimatorSet flipToBack, flipToFront;
 
     public static FlashcardsFragment newInstance(StudySession session) {
         FlashcardsFragment f = new FlashcardsFragment();
@@ -73,21 +72,9 @@ public class FlashcardsFragment extends Fragment {
 
         flashcards = session.getFlashcards();
 
-        // Camera distance to avoid clipping during flip
         float scale = requireContext().getResources().getDisplayMetrics().density;
         cardFront.setCameraDistance(8000 * scale);
         cardBack.setCameraDistance(8000 * scale);
-
-        // Load flip animators
-        flipToBack = (AnimatorSet) AnimatorInflater.loadAnimator(requireContext(), R.animator.flip_out);
-        AnimatorSet flipToBackIn = (AnimatorSet) AnimatorInflater.loadAnimator(requireContext(), R.animator.flip_in);
-        flipToBack.setTarget(cardFront);
-        flipToBackIn.setTarget(cardBack);
-
-        flipToFront = (AnimatorSet) AnimatorInflater.loadAnimator(requireContext(), R.animator.flip_out);
-        AnimatorSet flipToFrontIn = (AnimatorSet) AnimatorInflater.loadAnimator(requireContext(), R.animator.flip_in);
-        flipToFront.setTarget(cardBack);
-        flipToFrontIn.setTarget(cardFront);
 
         flCard.setOnClickListener(v -> flipCard());
 
@@ -112,9 +99,12 @@ public class FlashcardsFragment extends Fragment {
         if (resetFace) {
             isShowingFront = true;
             cardFront.setRotationY(0f);
-            cardBack.setRotationY(180f);
             cardFront.setAlpha(1f);
-            cardBack.setAlpha(1f);
+            cardFront.setVisibility(View.VISIBLE);
+            cardBack.setRotationY(90f);
+            cardBack.setAlpha(0f);
+            cardBack.setVisibility(View.GONE);
+            tvHint.setText(getString(R.string.flashcard_tap_hint));
         }
 
         Flashcard card = flashcards.get(currentIndex);
@@ -129,33 +119,37 @@ public class FlashcardsFragment extends Fragment {
 
     private void flipCard() {
         float scale = requireContext().getResources().getDisplayMetrics().density;
+        cardFront.setCameraDistance(8000 * scale);
+        cardBack.setCameraDistance(8000 * scale);
 
         if (isShowingFront) {
-            // Front → Back
+            cardBack.setVisibility(View.VISIBLE);
+            cardBack.setAlpha(1f);
+
             AnimatorSet outAnim = (AnimatorSet) AnimatorInflater.loadAnimator(
                     requireContext(), R.animator.flip_out);
             AnimatorSet inAnim = (AnimatorSet) AnimatorInflater.loadAnimator(
                     requireContext(), R.animator.flip_in);
             outAnim.setTarget(cardFront);
             inAnim.setTarget(cardBack);
-            cardFront.setCameraDistance(8000 * scale);
-            cardBack.setCameraDistance(8000 * scale);
             outAnim.start();
             inAnim.start();
+
             isShowingFront = false;
             tvHint.setText("Tap to flip back");
         } else {
-            // Back → Front
+            cardFront.setVisibility(View.VISIBLE);
+            cardFront.setAlpha(1f);
+
             AnimatorSet outAnim = (AnimatorSet) AnimatorInflater.loadAnimator(
                     requireContext(), R.animator.flip_out);
             AnimatorSet inAnim = (AnimatorSet) AnimatorInflater.loadAnimator(
                     requireContext(), R.animator.flip_in);
             outAnim.setTarget(cardBack);
             inAnim.setTarget(cardFront);
-            cardFront.setCameraDistance(8000 * scale);
-            cardBack.setCameraDistance(8000 * scale);
             outAnim.start();
             inAnim.start();
+
             isShowingFront = true;
             tvHint.setText(getString(R.string.flashcard_tap_hint));
         }

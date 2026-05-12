@@ -60,43 +60,49 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView tvTypeIcon, tvSubject, tvTypeLabel, tvDate;
+        private final android.widget.ImageView ivTypeIcon;
+        private final android.widget.FrameLayout flTypeIcon;
+        private final TextView tvSubject, tvTypeLabel, tvDate;
 
         ViewHolder(View view) {
             super(view);
-            tvTypeIcon = view.findViewById(R.id.tv_type_icon);
+            ivTypeIcon = view.findViewById(R.id.iv_type_icon);
+            flTypeIcon = view.findViewById(R.id.fl_type_icon);
             tvSubject = view.findViewById(R.id.tv_subject);
             tvTypeLabel = view.findViewById(R.id.tv_type_label);
             tvDate = view.findViewById(R.id.tv_date);
         }
 
         void bind(HistoryItem item, OnItemClickListener listener) {
-            // Type icon
             String type = item.getType() != null ? item.getType() : "SUMMARY";
-            switch (type) {
-                case "QUIZ":       tvTypeIcon.setText("🧠"); break;
-                case "FLASHCARDS": tvTypeIcon.setText("🃏"); break;
-                default:           tvTypeIcon.setText("📝"); break;
-            }
 
-            // Type label color
-            int labelColor;
+            int iconRes, badgeBgRes, labelColor;
             switch (type) {
                 case "QUIZ":
-                    labelColor = itemView.getContext().getColor(R.color.color_badge_quiz); break;
+                    iconRes = R.drawable.ic_quiz;
+                    badgeBgRes = R.drawable.bg_badge_quiz;
+                    labelColor = itemView.getContext().getColor(R.color.color_badge_quiz);
+                    break;
                 case "FLASHCARDS":
-                    labelColor = itemView.getContext().getColor(R.color.color_badge_flashcards); break;
+                    iconRes = R.drawable.ic_flashcards;
+                    badgeBgRes = R.drawable.bg_badge_flashcards;
+                    labelColor = itemView.getContext().getColor(R.color.color_badge_flashcards);
+                    break;
                 default:
-                    labelColor = itemView.getContext().getColor(R.color.color_badge_summary); break;
+                    iconRes = R.drawable.ic_summary;
+                    badgeBgRes = R.drawable.bg_badge_summary;
+                    labelColor = itemView.getContext().getColor(R.color.color_badge_summary);
+                    break;
             }
+
+            ivTypeIcon.setImageResource(iconRes);
+            flTypeIcon.setBackgroundResource(badgeBgRes);
             tvTypeLabel.setText(type);
             tvTypeLabel.setTextColor(labelColor);
 
-            // Subject
             String subject = item.getSubject();
             tvSubject.setText((subject != null && !subject.isEmpty()) ? subject : "General");
 
-            // Date — show first 10 chars (yyyy-MM-dd)
             String date = item.getCreatedAt();
             tvDate.setText(date != null && date.length() >= 10 ? date.substring(0, 10) : "");
 

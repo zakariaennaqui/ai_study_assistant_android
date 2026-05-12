@@ -5,18 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/color_background">
+    android:background="@color/color_background"
+    android:fitsSystemWindows="true">
 
     <!-- Toolbar -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingStart="4dp"
-        android:paddingEnd="@dimen/spacing_md"
-        android:paddingTop="@dimen/spacing_md"
-        android:paddingBottom="@dimen/spacing_sm"
+        android:paddingEnd="16dp"
         android:background="@color/color_background">
 
         <com.google.android.material.button.MaterialButton
@@ -25,7 +24,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:contentDescription="Back"
-            app:icon="@android:drawable/ic_media_previous"
+            app:icon="@drawable/ic_arrow_back"
             app:iconTint="@color/color_on_background" />
 
         <LinearLayout
@@ -41,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="Result"
                 android:textColor="@color/color_on_background"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 android:maxLines="1"
                 android:ellipsize="end" />
@@ -52,12 +51,12 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_marginTop="2dp" />
+                android:letterSpacing="0.03"
+                android:layout_marginTop="1dp" />
         </LinearLayout>
-
     </LinearLayout>
 
-    <!-- ViewPager (single page — we swap fragments manually per type) -->
+    <!-- Content container -->
     <FrameLayout
         android:id="@+id/result_container"
         android:layout_width="match_parent"

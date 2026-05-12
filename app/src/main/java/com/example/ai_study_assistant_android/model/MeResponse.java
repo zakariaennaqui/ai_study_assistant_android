@@ -9,6 +9,10 @@ public class MeResponse {
     @SerializedName("username")
     private String username;
 
+    @SerializedName("email")
+    private String email;
+
     public String getUserId() { return userId; }
     public String getUsername() { return username; }
+    public String getEmail() { return email; }
 }

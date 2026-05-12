@@ -71,13 +71,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Logout
-        view.findViewById(R.id.btn_logout).setOnClickListener(v -> {
-            if (getActivity() instanceof MainActivity) {
-                ((MainActivity) getActivity()).logout();
-            }
-        });
-
         // Setup RecyclerView
         adapter = new HistoryAdapter(new ArrayList<>(), item -> openSession(item.getSessionId()));
         rvRecent.setLayoutManager(new LinearLayoutManager(requireContext()));

@@ -7,28 +7,18 @@
     android:orientation="vertical"
     android:background="@color/color_background">
 
-    <!-- Toolbar -->
-    <LinearLayout
+    <!-- Header -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/spacing_md"
-        android:paddingEnd="@dimen/spacing_md"
-        android:paddingTop="@dimen/spacing_lg"
-        android:paddingBottom="@dimen/spacing_md"
-        android:background="@color/color_background">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/nav_history"
-            android:textColor="@color/color_on_background"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+        android:text="@string/nav_history"
+        android:textColor="@color/color_on_background"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="16dp" />
 
     <!-- Loading -->
     <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -38,6 +28,7 @@
         android:visibility="gone"
         app:indicatorColor="@color/color_primary"
         app:trackColor="@color/color_stroke"
+        app:trackCornerRadius="2dp"
         android:indeterminate="true" />
 
     <!-- Empty state -->
@@ -48,25 +39,34 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="@dimen/spacing_lg"
+        android:padding="32dp"
         android:visibility="gone">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="📚"
-            android:textSize="56sp"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/spacing_md" />
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_empty_history"
+            android:alpha="0.6"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="No history" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/history_empty"
+            android:text="No study sessions yet"
             android:textColor="@color/color_on_surface_muted"
             android:textSize="15sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your generated content will appear here"
+            android:textColor="@color/color_on_surface_muted"
+            android:textSize="13sp"
             android:gravity="center"
-            android:lineSpacingMultiplier="1.4" />
+            android:layout_marginTop="4dp" />
     </LinearLayout>
 
     <!-- List -->
@@ -81,10 +81,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingStart="@dimen/spacing_md"
-            android:paddingEnd="@dimen/spacing_md"
-            android:paddingTop="@dimen/spacing_sm"
-            android:paddingBottom="80dp" />
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="16dp" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
