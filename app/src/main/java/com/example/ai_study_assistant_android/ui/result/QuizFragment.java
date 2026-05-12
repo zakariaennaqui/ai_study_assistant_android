@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.ai_study_assistant_android.R;
 import com.example.ai_study_assistant_android.model.QuizQuestion;
 import com.example.ai_study_assistant_android.model.StudySession;
+import com.example.ai_study_assistant_android.review.ReviewLaterStore;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
@@ -35,6 +36,8 @@ public class QuizFragment extends Fragment {
     private LinearProgressIndicator progressQuiz;
     private View cardExplanation;
     private MaterialButton btnNext;
+
+    private StudySession session;
 
     public static QuizFragment newInstance(StudySession session) {
         QuizFragment f = new QuizFragment();
@@ -65,7 +68,7 @@ public class QuizFragment extends Fragment {
         cardExplanation = view.findViewById(R.id.card_explanation);
         btnNext = view.findViewById(R.id.btn_next);
 
-        StudySession session = getArguments() != null
+        session = getArguments() != null
                 ? (StudySession) getArguments().getSerializable(ARG_SESSION) : null;
 
         if (session == null || session.getQuestions() == null || session.getQuestions().isEmpty()) {
@@ -175,9 +178,17 @@ public class QuizFragment extends Fragment {
 
     private void showScoreDialog() {
         if (!isAdded()) return;
+        int total = questions.size();
+        ReviewLaterStore.getInstance().recordQuizAttempt(requireContext(), session, score, total);
+
+        String message = getString(R.string.quiz_score_message, score, total);
+        if (total > 0 && score * 100 <= total * 50) {
+            message += "\n\n" + getString(R.string.quiz_tracked_review_extra);
+        }
+
         new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(getString(R.string.quiz_score_title))
-                .setMessage(getString(R.string.quiz_score_message, score, questions.size()))
+                .setMessage(message)
                 .setPositiveButton("Done", (d, w) -> requireActivity().finish())
                 .setCancelable(false)
                 .show();

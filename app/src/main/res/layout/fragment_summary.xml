@@ -24,19 +24,6 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="12dp">
 
-            <FrameLayout
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:background="@drawable/bg_icon_circle_primary">
-
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_summary"
-                    android:contentDescription="Summary" />
-            </FrameLayout>
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -45,16 +32,16 @@
                 android:textColor="@color/color_on_background"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginStart="10dp" />
+                android:layout_marginEnd="8dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_share"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:contentDescription="Share"
-                app:icon="@android:drawable/ic_menu_share"
-                app:iconTint="@color/color_on_surface_muted" />
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/result_share"
+                android:textColor="@color/color_on_surface_muted"
+                app:rippleColor="@color/color_primary_soft" />
         </LinearLayout>
 
         <!-- Summary content -->
@@ -77,6 +64,16 @@
                 android:lineSpacingMultiplier="1.6"
                 android:selectable="true" />
         </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_review_later"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/summary_review_later"
+            android:textColor="@color/color_on_background"
+            app:strokeColor="@color/color_stroke" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

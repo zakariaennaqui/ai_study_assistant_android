@@ -23,32 +23,15 @@
             android:paddingTop="24dp"
             android:paddingBottom="20dp">
 
-            <!-- Top row: Logo + App name -->
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="20dp">
-
-                <ImageView
-                    android:id="@+id/iv_home_logo"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@mipmap/ic_launcher_foreground"
-                    android:contentDescription="StudyFlow logo" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/app_name"
-                    android:textColor="@color/color_on_background"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.02"
-                    android:layout_marginStart="8dp" />
-            </LinearLayout>
+                android:text="@string/app_name"
+                android:textColor="@color/color_on_background"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.02"
+                android:layout_marginBottom="20dp" />
 
             <!-- Greeting -->
             <TextView
@@ -103,25 +86,11 @@
                     android:paddingBottom="16dp"
                     android:gravity="center_vertical">
 
-                    <FrameLayout
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
-                        android:background="@drawable/bg_icon_circle_primary">
-
-                        <ImageView
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_summary"
-                            android:contentDescription="Summary" />
-                    </FrameLayout>
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:layout_marginStart="12dp"
                         android:layout_marginEnd="8dp">
 
                         <TextView
@@ -141,12 +110,6 @@
                             android:layout_marginTop="2dp"
                             android:maxLines="2" />
                     </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_forward"
-                        android:contentDescription="Open" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -175,25 +138,11 @@
                     android:paddingBottom="16dp"
                     android:gravity="center_vertical">
 
-                    <FrameLayout
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
-                        android:background="@drawable/bg_icon_circle_quiz">
-
-                        <ImageView
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_quiz"
-                            android:contentDescription="Quiz" />
-                    </FrameLayout>
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:layout_marginStart="12dp"
                         android:layout_marginEnd="8dp">
 
                         <TextView
@@ -213,12 +162,6 @@
                             android:layout_marginTop="2dp"
                             android:maxLines="2" />
                     </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_forward"
-                        android:contentDescription="Open" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -247,25 +190,11 @@
                     android:paddingBottom="16dp"
                     android:gravity="center_vertical">
 
-                    <FrameLayout
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
-                        android:background="@drawable/bg_icon_circle_flashcards">
-
-                        <ImageView
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_flashcards"
-                            android:contentDescription="Flashcards" />
-                    </FrameLayout>
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:layout_marginStart="12dp"
                         android:layout_marginEnd="8dp">
 
                         <TextView
@@ -285,12 +214,6 @@
                             android:layout_marginTop="2dp"
                             android:maxLines="2" />
                     </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_forward"
-                        android:contentDescription="Open" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

@@ -16,6 +16,7 @@ import com.example.ai_study_assistant_android.ui.generate.GenerateFragment;
 import com.example.ai_study_assistant_android.ui.history.HistoryFragment;
 import com.example.ai_study_assistant_android.ui.home.HomeFragment;
 import com.example.ai_study_assistant_android.ui.profile.ProfileFragment;
+import com.example.ai_study_assistant_android.ui.review.ReviewFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_HOME = "home";
     private static final String TAG_GENERATE = "generate";
     private static final String TAG_HISTORY = "history";
+    private static final String TAG_REVIEW = "review";
     private static final String TAG_PROFILE = "profile";
     private static final String STATE_ACTIVE_FRAGMENT_TAG = "active_fragment_tag";
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private GenerateFragment generateFragment;
     private HistoryFragment historyFragment;
+    private ReviewFragment reviewFragment;
     private ProfileFragment profileFragment;
     private Fragment activeFragment;
 
@@ -59,9 +62,11 @@ public class MainActivity extends AppCompatActivity {
             homeFragment = new HomeFragment();
             generateFragment = new GenerateFragment();
             historyFragment = new HistoryFragment();
+            reviewFragment = new ReviewFragment();
             profileFragment = new ProfileFragment();
             fm.beginTransaction()
                     .add(R.id.fragment_container, profileFragment, TAG_PROFILE).hide(profileFragment)
+                    .add(R.id.fragment_container, reviewFragment, TAG_REVIEW).hide(reviewFragment)
                     .add(R.id.fragment_container, historyFragment, TAG_HISTORY).hide(historyFragment)
                     .add(R.id.fragment_container, generateFragment, TAG_GENERATE).hide(generateFragment)
                     .add(R.id.fragment_container, homeFragment, TAG_HOME)
@@ -72,7 +77,17 @@ public class MainActivity extends AppCompatActivity {
             homeFragment = (HomeFragment) fm.findFragmentByTag(TAG_HOME);
             generateFragment = (GenerateFragment) fm.findFragmentByTag(TAG_GENERATE);
             historyFragment = (HistoryFragment) fm.findFragmentByTag(TAG_HISTORY);
+            reviewFragment = (ReviewFragment) fm.findFragmentByTag(TAG_REVIEW);
             profileFragment = (ProfileFragment) fm.findFragmentByTag(TAG_PROFILE);
+
+            if (reviewFragment == null) {
+                reviewFragment = new ReviewFragment();
+                fm.beginTransaction()
+                        .add(R.id.fragment_container, reviewFragment, TAG_REVIEW)
+                        .hide(reviewFragment)
+                        .commit();
+                fm.executePendingTransactions();
+            }
 
             String savedTag = savedInstanceState.getString(STATE_ACTIVE_FRAGMENT_TAG, TAG_HOME);
             activeFragment = fm.findFragmentByTag(savedTag);
@@ -90,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 switchTo(generateFragment);
             } else if (id == R.id.nav_history) {
                 switchTo(historyFragment);
+            } else if (id == R.id.nav_review) {
+                switchTo(reviewFragment);
             } else if (id == R.id.nav_profile) {
                 switchTo(profileFragment);
             }
@@ -151,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
             itemId = R.id.nav_generate;
         } else if (TAG_HISTORY.equals(tag)) {
             itemId = R.id.nav_history;
+        } else if (TAG_REVIEW.equals(tag)) {
+            itemId = R.id.nav_review;
         } else if (TAG_PROFILE.equals(tag)) {
             itemId = R.id.nav_profile;
         }

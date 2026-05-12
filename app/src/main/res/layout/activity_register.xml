@@ -16,25 +16,15 @@
 
         <Space android:layout_width="match_parent" android:layout_height="80dp" />
 
-        <!-- App Logo -->
-        <ImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@mipmap/ic_launcher_foreground"
-            android:contentDescription="StudyFlow logo" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textColor="@color/color_primary"
+            android:textColor="@color/color_on_background"
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:letterSpacing="0.04"
-            android:layout_marginTop="12dp" />
+            android:letterSpacing="0.04" />
 
         <Space android:layout_width="match_parent" android:layout_height="36dp" />
 

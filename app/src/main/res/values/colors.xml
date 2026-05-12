@@ -1,56 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand (shared) -->
-    <color name="color_primary">#10A37F</color>
-    <color name="color_primary_dark">#0D8A6A</color>
-    <color name="color_primary_variant">#1ABC94</color>
-    <color name="color_primary_soft">#1A10A37F</color>
-    <color name="color_secondary">#10A37F</color>
-    <color name="color_secondary_variant">#0D8A6A</color>
-    <color name="color_secondary_soft">#1A10A37F</color>
-    <color name="color_accent">#F59E0B</color>
-    <color name="color_accent_soft">#14F59E0B</color>
+    <!-- Monochrome (light): black on white, ChatGPT-style -->
+    <color name="color_primary">#000000</color>
+    <color name="color_primary_dark">#000000</color>
+    <color name="color_primary_variant">#000000</color>
+    <color name="color_primary_soft">#14000000</color>
+    <color name="color_secondary">#000000</color>
+    <color name="color_secondary_variant">#000000</color>
+    <color name="color_secondary_soft">#14000000</color>
+    <color name="color_accent">#000000</color>
+    <color name="color_accent_soft">#14000000</color>
 
-    <!-- Backgrounds (LIGHT) -->
     <color name="color_background">#FFFFFF</color>
-    <color name="color_surface">#F7F7F8</color>
+    <color name="color_surface">#FFFFFF</color>
     <color name="color_card">#FFFFFF</color>
-    <color name="color_card_elevated">#F0F0F1</color>
+    <color name="color_card_elevated">#F5F5F5</color>
 
-    <!-- Text (LIGHT) -->
-    <color name="color_on_background">#0D0D0D</color>
-    <color name="color_on_surface">#374151</color>
-    <color name="color_on_surface_muted">#8E8EA0</color>
+    <color name="color_on_background">#000000</color>
+    <color name="color_on_surface">#171717</color>
+    <color name="color_on_surface_muted">#6E6E6E</color>
     <color name="color_on_primary">#FFFFFF</color>
 
-    <!-- States -->
-    <color name="color_error">#EF4444</color>
-    <color name="color_error_soft">#14EF4444</color>
-    <color name="color_success">#10A37F</color>
-    <color name="color_warning">#F59E0B</color>
+    <color name="color_error">#000000</color>
+    <color name="color_error_soft">#12000000</color>
+    <color name="color_success">#000000</color>
+    <color name="color_warning">#000000</color>
 
-    <!-- Quiz -->
-    <color name="color_correct">#10A37F</color>
-    <color name="color_correct_bg">#E6F7F2</color>
-    <color name="color_wrong">#EF4444</color>
-    <color name="color_wrong_bg">#FEF2F2</color>
+    <!-- Quiz feedback: light green / light red -->
+    <color name="color_correct">#1B5E20</color>
+    <color name="color_correct_bg">#E8F5E9</color>
+    <color name="color_wrong">#B71C1C</color>
+    <color name="color_wrong_bg">#FFEBEE</color>
 
-    <!-- Divider / Stroke -->
     <color name="color_stroke">#E5E5E5</color>
-    <color name="color_divider">#ECECEC</color>
+    <color name="color_divider">#E5E5E5</color>
 
-    <!-- Type badge -->
-    <color name="color_badge_summary">#10A37F</color>
-    <color name="color_badge_summary_bg">#E6F7F2</color>
-    <color name="color_badge_quiz">#F59E0B</color>
-    <color name="color_badge_quiz_bg">#FEF9E7</color>
-    <color name="color_badge_flashcards">#6366F1</color>
-    <color name="color_badge_flashcards_bg">#EEF2FF</color>
+    <color name="color_badge_summary">#6E6E6E</color>
+    <color name="color_badge_summary_bg">#F0F0F0</color>
+    <color name="color_badge_quiz">#6E6E6E</color>
+    <color name="color_badge_quiz_bg">#F0F0F0</color>
+    <color name="color_badge_flashcards">#6E6E6E</color>
+    <color name="color_badge_flashcards_bg">#F0F0F0</color>
 
-    <!-- Gradient -->
-    <color name="color_gradient_start">#1A10A37F</color>
+    <color name="color_gradient_start">#0F000000</color>
     <color name="color_gradient_end">#00000000</color>
-
-    <!-- Shimmer -->
     <color name="color_shimmer">#0D000000</color>
 </resources>

@@ -50,8 +50,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/chip_summary"
-                android:textColor="@color/color_on_background"
-                app:chipBackgroundColor="@color/chip_bg_selector"
+                android:textColor="@color/chip_generate_text"
+                app:chipBackgroundColor="@color/chip_generate_fill"
+                app:chipStrokeColor="@color/color_stroke"
+                app:chipStrokeWidth="1dp"
                 app:chipCornerRadius="10dp"
                 app:checkedIconVisible="false" />
 
@@ -61,8 +63,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/chip_quiz"
-                android:textColor="@color/color_on_background"
-                app:chipBackgroundColor="@color/chip_bg_selector"
+                android:textColor="@color/chip_generate_text"
+                app:chipBackgroundColor="@color/chip_generate_fill"
+                app:chipStrokeColor="@color/color_stroke"
+                app:chipStrokeWidth="1dp"
                 app:chipCornerRadius="10dp"
                 app:checkedIconVisible="false" />
 
@@ -72,8 +76,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/chip_flashcards"
-                android:textColor="@color/color_on_background"
-                app:chipBackgroundColor="@color/chip_bg_selector"
+                android:textColor="@color/chip_generate_text"
+                app:chipBackgroundColor="@color/chip_generate_fill"
+                app:chipStrokeColor="@color/color_stroke"
+                app:chipStrokeWidth="1dp"
                 app:chipCornerRadius="10dp"
                 app:checkedIconVisible="false" />
         </com.google.android.material.chip.ChipGroup>
@@ -108,8 +114,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/summary_depth_essentials"
-                    android:textColor="@color/color_on_background"
-                    app:chipBackgroundColor="@color/chip_bg_selector"
+                    android:textColor="@color/chip_generate_text"
+                    app:chipBackgroundColor="@color/chip_generate_fill"
+                    app:chipStrokeColor="@color/color_stroke"
+                    app:chipStrokeWidth="1dp"
                     app:chipCornerRadius="10dp"
                     app:checkedIconVisible="false" />
 
@@ -119,8 +127,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/summary_depth_balanced"
-                    android:textColor="@color/color_on_background"
-                    app:chipBackgroundColor="@color/chip_bg_selector"
+                    android:textColor="@color/chip_generate_text"
+                    app:chipBackgroundColor="@color/chip_generate_fill"
+                    app:chipStrokeColor="@color/color_stroke"
+                    app:chipStrokeWidth="1dp"
                     app:chipCornerRadius="10dp"
                     app:checkedIconVisible="false" />
 
@@ -130,8 +140,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/summary_depth_thorough"
-                    android:textColor="@color/color_on_background"
-                    app:chipBackgroundColor="@color/chip_bg_selector"
+                    android:textColor="@color/chip_generate_text"
+                    app:chipBackgroundColor="@color/chip_generate_fill"
+                    app:chipStrokeColor="@color/color_stroke"
+                    app:chipStrokeWidth="1dp"
                     app:chipCornerRadius="10dp"
                     app:checkedIconVisible="false" />
             </com.google.android.material.chip.ChipGroup>
@@ -171,7 +183,10 @@
                 android:progress="2"
                 android:minHeight="36dp"
                 android:paddingTop="4dp"
-                android:paddingBottom="4dp" />
+                android:paddingBottom="4dp"
+                android:thumbTint="@color/color_primary"
+                android:progressTint="@color/color_primary"
+                android:progressBackgroundTint="@color/color_stroke" />
         </LinearLayout>
 
         <!-- Subject -->
@@ -198,9 +213,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@color/color_surface"
-            app:tabSelectedTextColor="@color/color_on_background"
-            app:tabTextColor="@color/color_on_surface_muted"
+            android:background="@color/color_card_elevated"
+            app:tabTextColor="@color/tab_generate_text"
             app:tabIndicatorColor="@color/color_primary"
             app:tabIndicatorHeight="2dp"
             app:tabRippleColor="@color/color_primary_soft"
@@ -260,8 +274,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginEnd="6dp"
-                    android:text="@string/btn_camera"
-                    app:icon="@android:drawable/ic_menu_camera" />
+                    android:text="@string/btn_camera" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_gallery"
@@ -270,8 +283,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="6dp"
-                    android:text="@string/btn_gallery"
-                    app:icon="@android:drawable/ic_menu_gallery" />
+                    android:text="@string/btn_gallery" />
             </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
