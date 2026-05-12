@@ -22,9 +22,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ai_study_assistant_android.ui.profile.ProfileFragment;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -51,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
+        tryLoadLoginBannerHero();
+
         tilEmail = findViewById(R.id.til_email);
         tilPassword = findViewById(R.id.til_password);
         etEmail = findViewById(R.id.et_email);
@@ -66,6 +74,26 @@ public class LoginActivity extends AppCompatActivity {
         tvRegisterLink.setOnClickListener(v -> {
             startActivity(new Intent(this, RegisterActivity.class));
         });
+    }
+
+    /** Loads optional JPEG from assets (synced from repo-root login_image.jpg at build time). */
+    private void tryLoadLoginBannerHero() {
+        ImageView iv = findViewById(R.id.iv_login_hero);
+        if (iv == null) {
+            return;
+        }
+        try (InputStream in = getAssets().open("login_banner.jpg")) {
+            BitmapFactory.Options opts = new BitmapFactory.Options();
+            opts.inSampleSize = 2;
+            Bitmap bmp = BitmapFactory.decodeStream(in, null, opts);
+            if (bmp != null) {
+                iv.setImageBitmap(bmp);
+            } else {
+                iv.setImageResource(R.drawable.login_hero);
+            }
+        } catch (IOException ignored) {
+            // Use @drawable/login_hero from layout
+        }
     }
 
     private void attemptLogin() {

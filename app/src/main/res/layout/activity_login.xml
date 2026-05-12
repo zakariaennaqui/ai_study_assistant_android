@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_background"
@@ -10,23 +11,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingStart="28dp"
-        android:paddingEnd="28dp">
+        android:orientation="vertical">
 
-        <Space android:layout_width="match_parent" android:layout_height="80dp" />
+        <!-- Edge-to-edge hero (outside horizontal padding) -->
+        <ImageView
+            android:id="@+id/iv_login_hero"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            android:src="@drawable/login_hero"
+            tools:src="@drawable/login_hero" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/color_on_background"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:letterSpacing="0.04" />
+            android:orientation="vertical"
+            android:paddingStart="28dp"
+            android:paddingEnd="28dp">
 
-        <Space android:layout_width="match_parent" android:layout_height="40dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
 
         <!-- Title -->
         <TextView
@@ -49,7 +56,9 @@
             android:gravity="start"
             android:layout_marginTop="6dp" />
 
-        <Space android:layout_width="match_parent" android:layout_height="32dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
 
         <!-- Email -->
         <com.google.android.material.textfield.TextInputLayout
@@ -68,7 +77,9 @@
                 android:imeOptions="actionNext" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Space android:layout_width="match_parent" android:layout_height="16dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
 
         <!-- Password -->
         <com.google.android.material.textfield.TextInputLayout
@@ -88,7 +99,9 @@
                 android:imeOptions="actionDone" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Space android:layout_width="match_parent" android:layout_height="32dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
 
         <!-- Login Button -->
         <com.google.android.material.button.MaterialButton
@@ -122,7 +135,9 @@
             app:trackColor="@color/color_stroke"
             app:indicatorSize="36dp" />
 
-        <Space android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="64dp" />
 
         <!-- Register Link -->
         <TextView
@@ -133,8 +148,9 @@
             android:textColor="@color/color_on_surface_muted"
             android:textSize="14sp"
             android:gravity="center"
-            android:paddingTop="16dp"
-            android:paddingBottom="28dp" />
+            android:paddingTop="8dp"
+            android:paddingBottom="40dp" />
 
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

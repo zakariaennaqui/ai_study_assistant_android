@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment {
     public static final int THEME_LIGHT = 1;
     public static final int THEME_DARK = 2;
 
-    private TextView tvAvatarInitial, tvUsername, tvUserEmail, tvUserId;
+    private TextView tvAvatarInitial, tvUsername, tvUserEmail;
     private MaterialRadioButton rbSystem, rbLight, rbDark;
     private boolean updatingRadios = false;
 
@@ -52,14 +52,13 @@ public class ProfileFragment extends Fragment {
         tvAvatarInitial = view.findViewById(R.id.tv_avatar_initial);
         tvUsername = view.findViewById(R.id.tv_username);
         tvUserEmail = view.findViewById(R.id.tv_user_email);
-        tvUserId = view.findViewById(R.id.tv_user_id);
         rbSystem = view.findViewById(R.id.rb_system);
         rbLight = view.findViewById(R.id.rb_light);
         rbDark = view.findViewById(R.id.rb_dark);
 
         TokenManager tm = TokenManager.getInstance(requireContext());
         String username = tm.getUsername();
-        setUserDisplay(username, null, tm.getUserId());
+        setUserDisplay(username, null);
 
         int saved = getThemePreference();
         setRadioSelection(saved);
@@ -93,7 +92,7 @@ public class ProfileFragment extends Fragment {
         fetchMe();
     }
 
-    private void setUserDisplay(String username, String email, String userId) {
+    private void setUserDisplay(String username, String email) {
         if (username != null && !username.isEmpty()) {
             tvUsername.setText(username);
             tvAvatarInitial.setText(String.valueOf(username.charAt(0)).toUpperCase());
@@ -106,12 +105,6 @@ public class ProfileFragment extends Fragment {
             tvUserEmail.setText(email);
         } else {
             tvUserEmail.setVisibility(View.GONE);
-        }
-        if (userId != null && !userId.isEmpty()) {
-            tvUserId.setVisibility(View.VISIBLE);
-            tvUserId.setText(userId);
-        } else {
-            tvUserId.setVisibility(View.GONE);
         }
     }
 
@@ -130,7 +123,7 @@ public class ProfileFragment extends Fragment {
                                 freshName = tm.getUsername();
                             }
                             tm.saveSession(tm.getToken(), freshName != null ? freshName : "", me.getUserId());
-                            setUserDisplay(freshName, me.getEmail(), me.getUserId());
+                            setUserDisplay(freshName, me.getEmail());
                         }
                     }
 

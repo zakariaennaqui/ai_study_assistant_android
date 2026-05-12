@@ -70,10 +70,13 @@
 
     <!-- Generate -->
     <string name="generate_title">Generate</string>
+    <string name="generate_subtitle">From a few lines of notes or a photo of a page.</string>
+    <string name="generate_section_source">Your material</string>
     <string name="generate_tab_text">Type Text</string>
     <string name="generate_tab_image">Scan Image</string>
     <string name="hint_text_input">Paste or type your study material here</string>
     <string name="hint_subject">Subject (optional, e.g. Biology)</string>
+    <string name="label_subject">Subject</string>
     <string name="label_type">What do you want to generate?</string>
     <string name="label_summary_depth">Summary style</string>
     <string name="summary_depth_essentials">Quick take</string>
